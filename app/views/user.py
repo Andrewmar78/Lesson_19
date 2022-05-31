@@ -11,6 +11,6 @@ class UsersView(Resource):
     def post(self):
         data = request.json
         user = user_service.create_user(data)
-        return '', 201
+        return user, 201
 
 

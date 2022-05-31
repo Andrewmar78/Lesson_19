@@ -10,6 +10,9 @@ from app.views.genres import genre_ns
 from app.views.movies import movie_ns
 from app.views.user import user_ns
 
+import logging
+logging.basicConfig(filename="basic.log", level=logging.INFO)
+
 
 def create_app(config: Config) -> Flask:
     """Функция создания основного объекта app"""

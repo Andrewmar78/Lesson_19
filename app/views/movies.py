@@ -35,7 +35,7 @@ class MoviesView(Resource):
         return "", 201, {"location": f"/movies/{ent.id}"}
 
 
-@movie_ns.route('/<int:bid>')
+@movie_ns.route('/<int:mid>')
 class MovieView(Resource):
     @auth_required
     def get(self, mid):

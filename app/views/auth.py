@@ -11,7 +11,7 @@ class AuthView(Resource):
     def post(self):
         req_json = request.json
         username = req_json.get("username", None)
-        password = req_json("password", None)
+        password = req_json.get("password", None)
         if None in [username, password]:
             return "", 400
         tokens = auth_service.generate_tokens(username, password)
