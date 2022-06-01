@@ -12,5 +12,3 @@ class UsersView(Resource):
         data = request.json
         user = user_service.create_user(data)
         return user, 201
-
-
