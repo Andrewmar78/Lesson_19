@@ -2,7 +2,7 @@ from flask import Flask
 from flask_restx import Api
 
 from app.config import Config
-from app.dao.models.user import User
+from app.dao.models.user import User, UserSchema
 from app.setup_db import db
 from app.views.auth import auth_ns
 from app.views.directors import director_ns
@@ -43,9 +43,12 @@ def create_data():
         u1 = User(username="Vasya", password="my_little_pony", role="user")
         u2 = User(username="Oleg", password="qwerty", role="user")
         u3 = User(username="Oleg", password="P@ssw0rd", role="admin")
+        user_schema = UserSchema(many=True)
+        res = user_schema.dump([u1, u2, u3])
 
         with db.session.begin():
-            db.session.add_all([u1, u2, u3])
+            db.session.add_all(res)
+            # db.session.add_all([u1, u2, u3])
 
 
 if __name__ == '__main__':
