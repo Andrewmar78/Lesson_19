@@ -1,4 +1,4 @@
-from app.dao.models.user import User
+from app.dao.models.user import User, UserSchema
 
 
 class UserDAO:
@@ -15,7 +15,8 @@ class UserDAO:
 		entity = User(**user_data)
 		self.session.add(entity)
 		self.session.commit()
-		return entity
+		new_user = UserSchema().dump(entity)
+		return new_user
 
 	def update(self, user_data):
 		self.session.add(user_data)
