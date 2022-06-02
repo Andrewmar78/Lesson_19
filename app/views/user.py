@@ -9,6 +9,6 @@ user_ns = Namespace('users')
 @user_ns.route('/')
 class UsersView(Resource):
     def post(self):
-        data = request.json
-        user = user_service.create_user(data)
+        user_data = request.json
+        user = user_service.create_user(user_data)
         return user, 201
