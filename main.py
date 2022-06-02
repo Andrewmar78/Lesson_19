@@ -32,10 +32,10 @@ def configure_app(application: Flask):
     api.add_namespace(genre_ns)
     api.add_namespace(auth_ns)
     api.add_namespace(user_ns)
-    # create_data(app, db)
+    create_data(app, db)
 
 
-def create_data():
+def create_data(app, db):
     """Создание пользователей в БД"""
     with app.app_context():
         db.create_all()
@@ -43,17 +43,17 @@ def create_data():
         u1 = User(username="Vasya", password="my_little_pony", role="user")
         u2 = User(username="Oleg", password="qwerty", role="user")
         u3 = User(username="Oleg", password="P@ssw0rd", role="admin")
-        user_schema = UserSchema(many=True)
-        res = user_schema.dump([u1, u2, u3])
+        # user_schema = UserSchema(many=True)
+        # res = user_schema.dump([u1, u2, u3])
 
         with db.session.begin():
-            db.session.add_all(res)
-            # db.session.add_all([u1, u2, u3])
+            # db.session.add_all(res)
+            db.session.add_all([u1, u2, u3])
 
 
 if __name__ == '__main__':
     app_config = Config()
     app = create_app(app_config)
     configure_app(app)
-    create_data()
+    # create_data()
     app.run(host="localhost", port=10001)
