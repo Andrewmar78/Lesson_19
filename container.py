@@ -21,4 +21,5 @@ genre_service = GenreService(genre_dao)
 user_dao = UserDAO(db.session)
 user_service = UserService(user_dao)
 
-auth_service = AuthService(db.session)
+auth_service = AuthService(user_service)
+
